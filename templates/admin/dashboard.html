@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpeg') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-dashboard.css') }}">
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger">&#9776;</button>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin.admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin.register_voter') }}">Register Voter</a></li>
+            <li><a href="{{ url_for('admin.manage_candidate') }}">Manage Candidates</a></li>
+            <li><a href="{{ url_for('admin.validate_user') }}">Validate Users</a></li>
+            <li><a href="{{ url_for('admin.block_maker') }}">Block Maker</a></li>
+            <li><a href="{{ url_for('admin.candidate_view') }}">Candidate View</a></li>
+            <li><a href="{{ url_for('admin.voter_view') }}">Voter View</a></li>
+            <li><a href="{{ url_for('admin.ledger') }}">Ledger (All Transactions)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="greeting">Hi, {{ admin_username }}</div>
+        <div class="your-block">
+            <strong>Your Block:</strong> {% if your_block is not none %}{{ your_block }}{% else %}Not Found{% endif %}
+        </div>
+    </div>
+     
+    <div class="balance">
+        <strong>Your Balance:</strong> {{ your_zth_balance }} ZTH
+    </div>
+    
+    <!-- TX Hash Display -->
+    <section class="tx-hash-section">
+        <h3>Admin TX Hash</h3>
+        <ul>
+            {% for admin in admins %}
+                <li>
+                    <strong>TX Hash:</strong>
+                    <span>{{ admin.tx_hash }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Main Content -->
+    <h1>Admin Dashboard</h1>
+    <h2>SELAMAT DATANG DI E-VOTING WITH BLOCKCHAIN SYSTEM</h2>
+
+    <!-- JavaScript for Hamburger Menu -->
+    <script>
+        document.querySelector(".hamburger").addEventListener("click", function() {
+            const nav = document.querySelector("nav");
+            nav.classList.toggle("nav-active");
+
+            // Ganti ikon tombol hamburger
+            if (nav.classList.contains("nav-active")) {
+                this.innerHTML = "✖"; // Ikon close
+            } else {
+                this.innerHTML = "&#9776;"; // Ikon hamburger
+            }
+        });
+    </script>
+</body>
+<footer>
+    <p>Part of <strong>Zytherion</strong></p>
+</footer>
+</html>

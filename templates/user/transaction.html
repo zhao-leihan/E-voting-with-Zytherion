@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/transaction.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="page-header">
+        <h1>Transaction History</h1>
+        <div class="voter-info">
+            <p><i class="icon-user"></i> <strong>Voter Address:</strong> {{ voter_tx }}</p>
+        </div>
+
+        <!-- Connect to MetaMask Button -->
+        <div class="connect-metamask">
+            <button id="connect-metamask-btn" onclick="connectMetaMask()">
+                <i class="icon-wallet"></i> Connect to MetaMask
+            </button>
+            <p id="metamask-status">Not connected</p>
+        </div>
+    </header>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Transactions Section -->
+    {% if transactions %}
+        <section class="transactions">
+            {% for tx in transactions %}
+                <div class="receipt">
+                    <div class="receipt-header">
+                        <span class="icon-receipt"><i class="icon-document"></i></span>
+                        <strong>Transaction Receipt</strong>
+                    </div>
+                    
+                    <div class="receipt-body">
+                        <p><i class="icon-hash"></i> <strong>Transaction Hash:</strong> {{ tx.tx_hash }}</p>
+                        <p><i class="icon-from"></i> <strong>From:</strong> {{ tx.from }}</p>
+                        <p><i class="icon-to"></i> <strong>To:</strong> {{ tx.to }}</p>
+                    
+                        <!-- Candidate Choice -->
+                        <p><i class="icon-to"></i> 
+                            <strong>Candidate Choice:</strong> 
+                            {% if tx.choice_candidate and tx.candidate_name %}
+                                {{ tx.choice_candidate }} - {{ tx.candidate_name }}
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </p>
+                    
+                        <p><i class="icon-amount"></i> <strong>Amount:</strong> {{ tx.amount }}</p>
+                        <p><i class="icon-status"></i> <strong>Status:</strong> 
+                            {% if tx.status == "Success" %}
+                                <span class="status-success">✔ Success</span>
+                            {% else %}
+                                <span class="status-pending">⚠ Pending</span>
+                            {% endif %}
+                        </p>
+                        <p><i class="icon-clock"></i> <strong>Timestamp:</strong> {{ tx.timestamp if tx.timestamp else 'N/A' }}</p>
+                    </div>
+
+                    <div class="receipt-footer">
+                        {% if tx.status != "Success" %}
+                            <form id="confirm-transaction-form" onsubmit="return handleTransaction(this)">
+                                <input type="hidden" name="tx_hash" value="{{ tx.tx_hash }}">
+                                <button type="submit" class="btn-confirm">
+                                    <i class="icon-check"></i> Confirm Transaction
+                                </button>
+                            </form>
+                        {% else %}
+                            <p class="confirmed"><i class="icon-check-circle"></i> Transaction confirmed.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    {% else %}
+        <div class="no-transactions">
+            <i class="icon-empty"></i>
+            <p>No transactions found for this address.</p>
+        </div>
+    {% endif %}
+
+    <footer>
+        <p>Part of <strong>Zytherion</strong></p>
+    </footer>
+
+    <!-- JavaScript for MetaMask Integration -->
+    <script>
+        let isConnected = false;
+
+        // Check if MetaMask is installed and connect
+        async function connectMetaMask() {
+            if (typeof window.ethereum === 'undefined') {
+                alert("Please install MetaMask to use this feature.");
+                return;
+            }
+
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const selectedAccount = accounts[0];
+                document.getElementById('metamask-status').innerText = `Connected: ${selectedAccount}`;
+                isConnected = true;
+                console.log("MetaMask connected:", selectedAccount);
+            } catch (error) {
+                alert("Failed to connect to MetaMask. Please try again.");
+                console.error("Error connecting to MetaMask:", error);
+            }
+        }
+
+        // Handle transaction confirmation
+        async function handleTransaction(form) {
+            if (!isConnected) {
+                alert("Please connect to MetaMask first.");
+                return false;
+            }
+
+            const txHash = form.querySelector('input[name="tx_hash"]').value;
+            const voterAddress = "{{ voter_tx }}";
+
+            // Get the user's balance
+            const web3 = new Web3(window.ethereum);
+            const balance = await web3.eth.getBalance(voterAddress);
+            const balanceInZTH = web3.utils.fromWei(balance, 'ether');
+
+            // Define voting price and gas fee
+            const votingPrice = Math.random() * (1 - 0.98) + 0.98; // Random between 0.98 and 1
+            const gasFee = 0.001;
+            const totalFee = votingPrice + gasFee;
+
+            // Check if the balance is sufficient
+            if (parseFloat(balanceInZTH) < totalFee) {
+                alert(`Insufficient balance. Required: ${totalFee.toFixed(8)} ZTH`);
+                return false;
+            }
+
+            // Sign and send transaction
+            try {
+                const transactionParameters = {
+                    from: voterAddress,
+                    to: voterAddress, // Replace with the recipient's address if needed
+                    value: web3.utils.toWei(totalFee.toString(), 'ether'),
+                    gas: 21000,
+                };
+
+                const tx = await window.ethereum.request({
+                    method: 'eth_sendTransaction',
+                    params: [transactionParameters],
+                });
+
+                console.log("Transaction sent:", tx);
+                alert("Transaction successful!");
+                form.submit(); // Submit the form after signing
+            } catch (error) {
+                console.error("Error sending transaction:", error);
+                alert("Failed to send transaction. Please try again.");
+            }
+
+            return false; // Prevent default form submission
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpeg') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Candidates</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/candidate.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger">&#9776;</button>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin.admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin.register_voter') }}">Register Voter</a></li>
+            <li><a href="{{ url_for('admin.manage_candidate') }}">Manage Candidates</a></li>
+            <li><a href="{{ url_for('admin.validate_user') }}">Validate Users</a></li>
+            <li><a href="{{ url_for('admin.block_maker') }}">Block Maker</a></li>
+            <li><a href="{{ url_for('admin.candidate_view') }}">Candidate View</a></li>
+            <li><a href="{{ url_for('admin.voter_view') }}">Voter View</a></li>
+            <li><a href="{{ url_for('admin.ledger') }}">Ledger (All Transactions)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Manage Candidates</h1>
+
+        <!-- Form for Adding Candidates -->
+        <section class="form-section">
+            <h2>Add New Candidate</h2>
+            <form method="POST" enctype="multipart/form-data" id="candidateForm">
+                <div class="form-group">
+                    <label for="candidate_number">Candidate Number:</label>
+                    <input type="text" id="candidate_number" name="candidate_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="candidate_name">Candidate Name:</label>
+                    <input type="text" id="candidate_name" name="candidate_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="candidate_photo">Candidate Photo:</label>
+                    <input type="file" id="candidate_photo" name="candidate_photo" accept="image/*" required>
+                </div>
+                <button type="submit" id="submitBtn" disabled>Add Candidate</button>
+            </form>
+        </section>
+
+        <!-- MetaMask Integration -->
+        <section class="metamask-section">
+            <h2>Connect to MetaMask</h2>
+            <button id="connectMetaMask">Connect Wallet</button>
+            <p id="walletStatus">Not connected to MetaMask.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Part of <strong>Zytherion</strong></p>
+    </footer>
+
+    <!-- JavaScript for Hamburger Menu and MetaMask -->
+    <script>
+        // Toggle hamburger menu
+        document.querySelector(".hamburger").addEventListener("click", function() {
+            const nav = document.querySelector("nav");
+            nav.classList.toggle("nav-active");
+
+            // Toggle hamburger icon
+            if (nav.classList.contains("nav-active")) {
+                this.innerHTML = "✖"; // Close icon
+            } else {
+                this.innerHTML = "&#9776;"; // Hamburger icon
+            }
+        });
+
+        // Connect to MetaMask
+        const connectButton = document.getElementById('connectMetaMask');
+        const walletStatus = document.getElementById('walletStatus');
+        const submitBtn = document.getElementById('submitBtn');
+        let account;
+
+        connectButton.addEventListener('click', async () => {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    // Request account access
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    account = accounts[0];
+                    walletStatus.textContent = `Connected to MetaMask with account: ${account}`;
+                    console.log('Connected account:', account);
+                    submitBtn.disabled = false; // Enable submit button after connecting
+                } catch (error) {
+                    console.error('User rejected the request.');
+                    walletStatus.textContent = 'Connection failed. Please try again.';
+                }
+            } else {
+                walletStatus.textContent = 'MetaMask is not installed. Please install it to proceed.';
+            }
+        });
+
+        // Handle form submission
+        const candidateForm = document.getElementById('candidateForm');
+
+        candidateForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            // Check if MetaMask is connected
+            if (!account) {
+                alert('Please connect to MetaMask before submitting.');
+                return;
+            }
+
+            // Simulate gas fee deduction (you can integrate with Web3.js for real transactions)
+
+            // Submit the form after confirming MetaMask connection
+            candidateForm.submit();
+        });
+    </script>
+</body>
+</html>

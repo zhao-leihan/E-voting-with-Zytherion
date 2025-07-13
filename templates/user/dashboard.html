@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpeg') }}">
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger">&#9776;</button>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('user.dashboard') }}">Dashboard</a></li>
+            <li><a href = "{{url_for('user.ledger')}}">Ledger</a></li>
+            <li><a href = "{{url_for('user.results')}}">Result</a></li>
+            <li><a href="{{ url_for('user.login') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Dashboard</h1>
+
+        <!-- User Information -->
+        <section class="user-info">
+            <p><strong>TX Hash:</strong> {{ tx_hash }}</p>
+            <p><strong>Voter ID:</strong> {{ voter_id }}</p>
+            <p><strong>NIM:</strong> {{ nim }}</p>
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Date of Birth:</strong> {{ dob }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>ZTH Balance:</strong> {{ "%.8f"|format(zth_amount) }} ZTH</p>
+        </section>
+
+        <!-- Candidate List -->
+        <section class="candidate-list">
+            <h2>Available Candidates</h2>
+            <div class="candidate-grid">
+                {% for candidate in candidates %}
+                    <div class="candidate-card">
+                        <div class="candidate-number">
+                            <strong>Candidate {{ candidate.candidate_number }}</strong>
+                        </div>
+                        <div class="candidate-photo">
+                            <img src="data:image/jpeg;base64,{{ candidate.photo_base64 }}" alt="Candidate Photo">
+                        </div>
+                        <div class="candidate-name">
+                            {{ candidate.candidate_name }}
+                        </div>
+                        <form method="POST" action="{{ url_for('user.vote') }}" style="display:inline;">
+                            <button type="submit" class="vote-button">Vote</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Part of <strong>Zytherion</strong></p>
+    </footer>
+
+    <!-- JavaScript for Hamburger Menu -->
+    <script>
+        document.querySelector(".hamburger").addEventListener("click", function() {
+            const nav = document.querySelector("nav");
+            nav.classList.toggle("nav-active");
+
+            // Toggle hamburger icon
+            if (nav.classList.contains("nav-active")) {
+                this.innerHTML = "✖"; // Close icon
+            } else {
+                this.innerHTML = "&#9776;"; // Hamburger icon
+            }
+        });
+    </script>
+</body>
+</html>

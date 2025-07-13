@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpeg') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledger</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ledger-admin.css') }}">
+</head>
+<body>
+        <!-- Hamburger Menu Button -->
+    <button class="hamburger">&#9776;</button>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('user.dashboard') }}">Dashboard</a></li>
+                <li><a href = "{{url_for('user.ledger')}}">Ledger</a></li>
+                <li><a href = "{{url_for('user.results')}}">Result</a></li>
+                <li><a href="{{ url_for('user.login') }}">Logout</a></li>
+            </ul>
+        </nav>
+
+    <h1>Ledger (All Transactions)</h1>
+    <section class="candidate-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Transaction Hash</th>
+                    <th>Block</th>
+                    <th>Sender</th>
+                    <th>Recipient</th>
+                    <th>Amount (ZTH)</th>
+                    <th>Timestamp</th>
+                    <th>Gas Fee (ZTH)</th>
+                    <th>Voting Fee (ZTH)</th>
+                    <th>Voter's Choice</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in ledger %}
+                    <tr>
+                        <td>{{ transaction.tx_hash }}</td>
+                        <td>{{ transaction.block }}</td>
+                        <td>{{ transaction.from }}</td>
+                        <td>{{ transaction.to }}</td>
+                        <td>{{ transaction.amount }}</td>
+                        <td>{{ transaction.timestamp }}</td>
+                        <td>{{ transaction.gas_fee }}</td>
+                        <td>{{ transaction.voting_fee }}</td>
+                        <td>{{ transaction.choice_candidate }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+<footer>
+    <p>Part of <strong>Zytherion</strong></p>
+</footer>
+
+<script>
+    document.querySelector(".hamburger").addEventListener("click", function() {
+        const nav = document.querySelector("nav");
+        nav.classList.toggle("nav-active");
+
+        // Ganti ikon tombol hamburger
+        if (nav.classList.contains("nav-active")) {
+            this.innerHTML = "✖"; // Ikon close
+        } else {
+            this.innerHTML = "&#9776;"; // Ikon hamburger
+        }
+    });
+</script>
+</html>

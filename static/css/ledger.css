@@ -1,0 +1,224 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column; /* Mengatur layout menjadi kolom */
+    overflow-x: hidden;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #ff6f61;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 10px;
+}
+
+.hamburger:hover {
+    transform: scale(1.2);
+}
+
+/* Navigation Menu */
+nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #1e1e2f;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.nav-active {
+    left: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 60px 0;
+}
+
+nav ul li {
+    margin: 15px 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #ff6f61;
+    transform: translateX(10px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body > * {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Header Section */
+.page-header {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    color: #4a4e69;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 1rem;
+    color: #6b705c;
+    margin-top: 5px;
+}
+
+/* Ledger Table Section */
+.ledger-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto; /* Scroll horizontal jika tabel terlalu lebar */
+}
+
+.ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.ledger-table thead {
+    background: #ff6f61;
+    color: #ffffff;
+}
+
+.ledger-table th,
+.ledger-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    max-width: 200px;
+}
+
+.ledger-table th {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.ledger-table td {
+    font-size: 0.9rem;
+    color: #4a4e69;
+}
+
+.ledger-table tbody tr:hover {
+    background: #f5f7fa;
+    transition: background 0.3s ease;
+}
+
+.status-success {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+/* No Records Message */
+.no-records {
+    text-align: center;
+    margin-top: 50px;
+    color: #6b705c;
+    font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #4a4e69;
+    color: #ffffff;
+    margin-top: auto; /* Mendorong footer ke bawah */
+    font-size: 0.9rem;
+}
+
+footer strong {
+    color: #ff6f61;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 15px;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .page-header p {
+        font-size: 0.9rem;
+    }
+
+    .ledger-table th,
+    .ledger-table td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .no-records {
+        font-size: 1rem;
+    }
+}
+

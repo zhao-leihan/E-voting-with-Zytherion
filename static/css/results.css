@@ -1,0 +1,264 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #2b2b4d);
+    color: #ffffff;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column; /* Mengatur layout menjadi kolom */
+    overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body > * {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #ff6f61;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 1rem;
+    color: #c3cfe2;
+    margin-top: 5px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #ff6f61;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 10px;
+}
+
+.hamburger:hover {
+    transform: scale(1.2);
+}
+
+/* Navigation Menu */
+nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #1e1e2f;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.nav-active {
+    left: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 60px 0;
+}
+
+nav ul li {
+    margin: 15px 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #ff6f61;
+    transform: translateX(10px);
+}
+
+/* Results Table Section */
+.results-table {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto; /* Scroll horizontal jika tabel terlalu lebar */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+thead {
+    background: #ff6f61;
+    color: #ffffff;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    max-width: 200px;
+}
+
+th {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+td {
+    font-size: 0.9rem;
+    color: #c3cfe2;
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease;
+}
+
+.address {
+    font-family: monospace;
+    color: #ff6f61;
+}
+
+.green {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.red {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Progress Bar for Market Share */
+td span {
+    position: relative;
+    display: inline-block;
+}
+
+td span::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 3px;
+    width: calc(var(--percent) * 1%);
+    background: var(--color);
+    border-radius: 5px;
+}
+
+.green {
+    --color: #28a745;
+    --percent: attr(data-percent);
+}
+
+.red {
+    --color: #dc3545;
+    --percent: attr(data-percent);
+}
+
+/* No Votes Message */
+.no-votes {
+    text-align: center;
+    margin-top: 50px;
+    color: #c3cfe2;
+    font-size: 1.2rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #1e1e2f;
+    color: #ffffff;
+    margin-top: auto; /* Mendorong footer ke bawah */
+    font-size: 0.9rem;
+}
+
+footer strong {
+    color: #ff6f61;
+}
+
+.chart-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #1b1b2f;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #00ffcc44;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .header p {
+        font-size: 0.9rem;
+    }
+
+    table th,
+    table td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .no-votes {
+        font-size: 1rem;
+    }
+}

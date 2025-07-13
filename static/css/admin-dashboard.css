@@ -1,0 +1,279 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Memastikan tinggi halaman mencakup seluruh viewport */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column; /* Mengatur layout menjadi kolom */
+    overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body > * {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Header Section */
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header .greeting {
+    font-size: 1.2rem;
+    color: #4a4e69;
+    font-weight: bold;
+}
+
+.header .your-block {
+    font-size: 1rem;
+    color: #6b705c;
+}
+
+/* TX Hash Display */
+.tx-hash-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.tx-hash-section h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4a4e69;
+    font-size: 1.8rem;
+}
+
+.tx-hash-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tx-hash-section li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f5f7fa;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    word-wrap: break-word; /* Memastikan teks panjang dipotong ke baris baru */
+    overflow-wrap: anywhere; /* Alternatif modern untuk pemisahan kata */
+    white-space: normal; /* Memastikan teks tidak tetap dalam satu baris */
+}
+
+.tx-hash-section strong {
+    color: #ff6f61;
+    display: block; /* Label "TX Hash" di baris sendiri */
+    margin-bottom: 5px;
+}
+
+.tx-hash-section span {
+    display: block; /* Nilai TX Hash di baris sendiri */
+    font-size: 0.9rem;
+    color: #4a4e69;
+    word-break: break-all; /* Memastikan teks panjang dipotong ke baris baru */
+    overflow-wrap: anywhere; /* Alternatif modern untuk pemisahan kata */
+    white-space: normal; /* Memastikan teks tidak tetap dalam satu baris */
+}
+/* Main Content */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #4a4e69;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #ff6f61;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    color: #6b705c;
+    font-size: 1.8rem;
+    font-weight: normal;
+}
+
+/* Hamburger Menu */
+/* Hamburger Menu */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #ff6f61;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 10px; /* Padding default untuk mobile */
+}
+
+.hamburger:hover {
+    transform: scale(1.2);
+}
+
+/* Adjust Hamburger Position for Desktop */
+@media (min-width: 768px) {
+    .hamburger {
+        top: 90px; /* Posisi lebih ke kanan untuk desktop */
+    }
+}
+/* Navigation Menu */
+nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #4a4e69;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.nav-active {
+    left: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 60px 0;
+}
+
+nav ul li {
+    margin: 15px 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #ff6f61;
+    transform: translateX(10px);
+}
+
+body strong {
+    color: purple;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #4a4e69;
+    color: #ffffff;
+    margin-top: auto; /* Mendorong footer ke bawah */
+    font-size: 0.9rem;
+}
+
+footer strong {
+    color: #ff6f61;
+}
+
+/* Balance Box */
+.balance {
+    max-width: 400px;
+    margin: 30px auto; /* Pusatkan secara horizontal */
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 20px 30px;
+    text-align: center;
+    color: #4a4e69;
+    font-size: 1.2rem;
+    font-weight: 500;
+    animation: slideFade 0.8s ease-in-out;
+    position: relative;
+}
+
+/* Optional Glow Border on Hover */
+.balance:hover {
+    box-shadow: 0 0 15px rgba(255, 111, 97, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Animation Keyframes */
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tx-hash-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .tx-hash-section li {
+        font-size: 0.9rem;
+    }
+}

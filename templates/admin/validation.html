@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpeg') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Validate Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/valid.css') }}">
+</head>
+<body>
+    <h1>Validation Users</h1>
+    <button class="hamburger">&#9776;</button> <!-- Tombol hamburger -->
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin.admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin.register_voter') }}">Register Voter</a></li>
+            <li><a href="{{ url_for('admin.manage_candidate') }}">Manage Candidates</a></li>
+            <li><a href="{{ url_for('admin.validate_user') }}">Validate Users</a></li>
+            <li><a href="{{ url_for('admin.block_maker') }}">Block Maker</a></li>
+            <li><a href="{{ url_for('admin.candidate_view') }}">Candidate View</a></li>
+            <li><a href="{{ url_for('admin.voter_view') }}">Voter View</a></li>
+            <li><a href="{{ url_for('admin.ledger') }}">Ledger (All Transactions)</a></li>
+        </ul>
+    </nav>
+
+    <h2>Validate Users</h2>
+    {% if voters %}
+        <form method="post">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>TX Hash</th>
+                        <th>Status</th>
+                        <th>ZTH Amount</th> <!-- New column for ZTH amount -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for voter in voters %}
+                        <tr>
+                            <td>
+                                <input type="radio" name="tx_hash" value="{{ voter.tx_hash }}" required>
+                            </td>
+                            <td>{{ voter.tx_hash }}</td>
+                            <td>{{ voter.status }}</td>
+                            <td>{{ voter.zth_amount }} ZTH</td> <!-- Display ZTH amount -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <label for="validator">Validator Name:</label>
+            <input type="text" name="validator" required>
+            <button type="submit">Validate</button>
+        </form>
+    {% else %}
+        <p>No pending voters found.</p>
+    {% endif %}
+
+
+</body>
+<footer>
+    <p>Part of <strong>Zytherion</strong></p>
+</footer>
+
+<script>
+    document.querySelector(".hamburger").addEventListener("click", function() {
+        const nav = document.querySelector("nav");
+        nav.classList.toggle("nav-active");
+        
+        // Ganti ikon tombol hamburger
+        if (nav.classList.contains("nav-active")) {
+            this.innerHTML = "✖"; // Ikon close
+        } else {
+            this.innerHTML = "&#9776;"; // Ikon hamburger
+        }
+    });
+</script>
+</html>

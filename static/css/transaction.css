@@ -1,0 +1,372 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Scrollbar (Webkit Browsers) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff6f61;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    transition: background 0.5s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body > * {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Header Section */
+.page-header {
+    background: #ffffff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    color: #4a4e69;
+    margin-bottom: 10px;
+}
+
+.voter-info {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #6b705c;
+}
+
+.voter-info i {
+    margin-right: 5px;
+    color: #ff6f61;
+}
+
+/* MetaMask Connect Button */
+.connect-metamask {
+    margin-top: 15px;
+}
+
+#connect-metamask-btn {
+    background: #ff6f61;
+    color: #ffffff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#connect-metamask-btn:hover {
+    background: #e0564b;
+}
+
+#metamask-status {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+/* Flash Messages */
+.flash-messages {
+    list-style: none;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 10px;
+    border-left: 5px solid #ff6f61;
+    background-color: #fff2ef;
+    border-radius: 8px;
+    color: #d63333;
+}
+
+.flash-messages li {
+    font-size: 1rem;
+}
+
+/* Transactions Section */
+.transactions {
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+/* Receipt Card */
+.receipt {
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.receipt:hover {
+    transform: translateY(-4px);
+}
+
+/* Receipt Header */
+.receipt-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #4a4e69;
+}
+
+.icon-receipt {
+    background: #ff6f61;
+    color: #fff;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+/* Receipt Body */
+.receipt-body p {
+    font-size: 0.95rem;
+    color: #4a4e69;
+    margin: 6px 0;
+}
+
+.receipt-body i {
+    margin-right: 6px;
+    color: #ff6f61;
+}
+
+/* Transaction Status */
+.status-success {
+    color: green;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: orange;
+    font-weight: bold;
+}
+
+/* Receipt Footer */
+.receipt-footer {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.receipt-footer .btn-confirm {
+    padding: 8px 16px;
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.receipt-footer .btn-confirm:hover {
+    background: #43a047;
+}
+
+.confirmed {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* No Transactions Message */
+.no-transactions {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+.no-transactions i {
+    font-size: 3rem;
+    color: #ccc;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Optional Icons (Font Awesome or similar) */
+.icon-user, .icon-wallet, .icon-hash, .icon-from, .icon-to, .icon-amount, .icon-status, .icon-check, .icon-check-circle, .icon-clock, .icon-document, .icon-empty {
+    font-style: normal;
+    margin-right: 5px;
+}
+
+/* Container Styling */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-top: 50px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Title Styling */
+.title {
+    color: #4a4e69;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #ff6f61;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+/* Candidate and Transaction Details */
+.candidate-details, .transaction-details {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease;
+}
+
+.candidate-details:hover,
+.transaction-details:hover {
+    background: #eef1f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.candidate-details h2, .transaction-details h2 {
+    font-size: 1.2rem;
+    color: #4a4e69;
+    margin-bottom: 10px;
+}
+
+.candidate-details p, .transaction-details p {
+    font-size: 1rem;
+    color: #6b705c;
+    margin-bottom: 5px;
+}
+
+.candidate-details strong, .transaction-details strong {
+    color: #ff6f61;
+}
+
+/* Payment Form */
+.payment-form {
+    margin-top: 20px;
+}
+
+/* Text Wraps */
+p, td, th, span, div {
+    word-break: break-word;
+}
+
+/* Confirm Button */
+.confirm-button {
+    padding: 10px 20px;
+    background: #ff6f61;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.confirm-button:hover {
+    background: #e0564b;
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Cancel Link */
+.cancel-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #4a4e69;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.cancel-link:hover {
+    color: #ff6f61;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #4a4e69;
+    color: #ffffff;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+footer strong {
+    color: #ff6f61;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .candidate-details p, .transaction-details p {
+        font-size: 0.9rem;
+    }
+
+    .confirm-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

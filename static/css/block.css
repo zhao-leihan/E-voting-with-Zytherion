@@ -1,0 +1,197 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    color: #4a4e69;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #ff6f61;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.greeting {
+    font-size: 1.2rem;
+    color: #4a4e69;
+    font-weight: bold;
+}
+
+.your-block {
+    font-size: 1rem;
+    color: #ff6f61;
+    font-style: italic;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #ff6f61;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.2);
+}
+
+/* Navigation Menu */
+nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #4a4e69;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.nav-active {
+    left: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 60px 0;
+}
+
+nav ul li {
+    margin: 15px 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #ff6f61;
+    transform: translateX(10px);
+}
+
+/* Table Styling with Word-Wrap */
+.block-list {
+    margin: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Memastikan lebar kolom tetap */
+}
+
+thead {
+    background: #ff6f61;
+    color: #ffffff;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Memastikan teks panjang dipotong */
+    overflow-wrap: break-word; /* Alternatif untuk browser modern */
+    white-space: normal; /* Memungkinkan teks pindah baris */
+    max-width: 200px; /* Batas maksimum lebar kolom */
+}
+
+tbody tr:hover {
+    background: #f5f7fa;
+    transition: background 0.3s ease;
+}
+
+tfoot tr {
+    background: #ff6f61;
+    color: #ffffff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #4a4e69;
+    color: #ffffff;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+footer strong {
+    color: #ff6f61;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body > * {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,258 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Memastikan tinggi halaman mencakup seluruh viewport */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column; /* Mengatur layout menjadi kolom */
+    overflow-x: hidden;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body > * {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Header Section */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #4a4e69;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #ff6f61;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    color: #6b705c;
+    font-size: 1.8rem;
+    font-weight: normal;
+}
+
+/* User Information */
+.user-info {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.user-info p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #4a4e69;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.user-info strong {
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+/* Candidate List Styling */
+.candidate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.candidate-card {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.candidate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.candidate-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff6f61;
+    margin-bottom: 10px;
+}
+
+.candidate-photo img {
+    width: 125px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #ff6f61;
+    margin-bottom: 10px;
+}
+
+.candidate-name {
+    font-size: 1.1rem;
+    color: #4a4e69;
+    margin-top: 10px;
+}
+
+.vote-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff6f61;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.vote-button:hover {
+    background: #e0564b;
+    transform: scale(1.05);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #ff6f61;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 10px;
+}
+
+.hamburger:hover {
+    transform: scale(1.2);
+}
+
+/* Navigation Menu */
+nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #4a4e69;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.nav-active {
+    left: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 60px 0;
+}
+
+nav ul li {
+    margin: 15px 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: #ff6f61;
+    transform: translateX(10px);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #4a4e69;
+    color: #ffffff;
+    margin-top: auto; /* Mendorong footer ke bawah */
+    font-size: 0.9rem;
+}
+
+footer strong {
+    color: #ff6f61;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .user-info {
+        padding: 15px;
+    }
+
+    .user-info p {
+        font-size: 0.9rem;
+    }
+
+    .candidate-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .candidate-number {
+        font-size: 1rem;
+    }
+
+    .candidate-name {
+        font-size: 0.9rem;
+    }
+
+    .vote-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

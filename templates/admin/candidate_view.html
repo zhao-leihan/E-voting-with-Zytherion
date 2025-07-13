@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpeg') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate View</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/candidate-view.css') }}">
+</head>
+<body>
+    <button class="hamburger">&#9776;</button>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin.admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin.register_voter') }}">Register Voter</a></li>
+            <li><a href="{{ url_for('admin.manage_candidate') }}">Manage Candidates</a></li>
+            <li><a href="{{ url_for('admin.validate_user') }}">Validate Users</a></li>
+            <li><a href="{{ url_for('admin.block_maker') }}">Block Maker</a></li>
+            <li><a href="{{ url_for('admin.candidate_view') }}">Candidate View</a></li>
+            <li><a href="{{ url_for('admin.voter_view') }}">Voter View</a></li>
+            <li><a href="{{ url_for('admin.ledger') }}">Ledger (All Transactions)</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Candidate View</h1>
+    
+        <!-- Candidate Table -->
+        <section class="candidate-table">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>TX Hash</th>
+                            <th>Candidate Number</th>
+                            <th>Candidate Name</th>
+                            <th>Photo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for candidate in candidates %}
+                            <tr>
+                                <td>{{ candidate.tx_hash }}</td>
+                                <td>{{ candidate.candidate_number }}</td>
+                                <td>{{ candidate.candidate_name }}</td>
+                                <td>
+                                    <img src="data:image/jpeg;base64,{{ candidate.photo_base64 }}" alt="Candidate Photo">
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+     <!-- JavaScript for Hamburger Menu -->
+     <script>
+        document.querySelector(".hamburger").addEventListener("click", function() {
+            const nav = document.querySelector("nav");
+            nav.classList.toggle("nav-active");
+
+            // Ganti ikon tombol hamburger
+            if (nav.classList.contains("nav-active")) {
+                this.innerHTML = "✖"; // Ikon close
+            } else {
+                this.innerHTML = "&#9776;"; // Ikon hamburger
+            }
+        });
+    </script>
+<footer>
+    <p>Part of <strong>Zytherion</strong></p>
+</footer>
+</html>

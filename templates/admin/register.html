@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpeg') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Voter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+    <button class="hamburger">&#9776;</button> <!-- Tombol hamburger -->
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin.admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin.register_voter') }}">Register Voter</a></li>
+            <li><a href="{{ url_for('admin.manage_candidate') }}">Manage Candidates</a></li>
+            <li><a href="{{ url_for('admin.validate_user') }}">Validate Users</a></li>
+            <li><a href="{{ url_for('admin.block_maker') }}">Block Maker</a></li>
+            <li><a href="{{ url_for('admin.candidate_view') }}">Candidate View</a></li>
+            <li><a href="{{ url_for('admin.voter_view') }}">Voter View</a></li>
+            <li><a href="{{ url_for('admin.ledger') }}">Ledger (All Transactions)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <h1>Register Voter</h1>
+    <form method="POST">
+        <label for="nim">NIK:</label>
+        <input type="text" id="nim" name="nim" required><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+<footer>
+    <p>Part of <strong>Zytherion</strong></p>
+</footer>
+<script>
+    document.querySelector(".hamburger").addEventListener("click", function() {
+        const nav = document.querySelector("nav");
+        nav.classList.toggle("nav-active");
+        
+        // Ganti ikon tombol hamburger
+        if (nav.classList.contains("nav-active")) {
+            this.innerHTML = "✖"; // Ikon close
+        } else {
+            this.innerHTML = "&#9776;"; // Ikon hamburger
+        }
+    });
+</script>
+</html>

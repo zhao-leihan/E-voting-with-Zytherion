@@ -1,0 +1,191 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%; /* Memastikan tinggi halaman mencakup seluruh viewport */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column; /* Mengatur layout menjadi kolom */
+    overflow-x: hidden;
+}
+
+main {
+    flex: 1; /* Memastikan konten utama mengisi ruang yang tersedia */
+    padding-bottom: 20px; /* Memberi jarak antara konten dan footer */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4a4e69;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #ff6f61;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+/* Login Form Styling */
+.login-form {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+    border-color: #ff6f61;
+    transform: scale(1.02);
+    outline: none;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #ff6f61;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.login-form button:hover {
+    background: #e0564b;
+    transform: scale(1.05);
+}
+
+/* Flash Messages */
+.flash-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
+    animation: shake 0.5s ease;
+}
+
+.flash-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Link to Register */
+.login-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #4a4e69;
+}
+
+.login-link a {
+    color: #ff6f61;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: #e0564b;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #4a4e69;
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-top: auto; /* Mendorong footer ke bawah */
+}
+
+footer strong {
+    color: #ff6f61;
+}
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .login-form {
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        font-size: 0.9rem;
+    }
+
+    .login-form button {
+        font-size: 0.9rem;
+    }
+}

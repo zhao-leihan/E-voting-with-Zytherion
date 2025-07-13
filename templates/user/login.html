@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpeg') }}">
+</head>
+<body>
+    <main>
+        <h1>User Login</h1>
+        <form method="POST" action="{{ url_for('user.login') }}">
+            <label for="tx_hash">TX Hash:</label>
+            <input type="text" id="tx_hash" name="tx_hash" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </main>
+</body>
+<footer>
+    <p>Part of <strong>Zytherion</strong></p>
+</footer>
+</html>
