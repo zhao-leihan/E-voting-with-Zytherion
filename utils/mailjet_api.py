@@ -47,7 +47,7 @@ class MailJetAPI:
         data = {
             "Messages": [
                 {
-                    "From": {"Email": "evotersverify@gmail.com", "Name": "E-Voting System"},
+                    "From": {"Email": "Your Email", "Name": "E-Voting System"},
                     "To": [{"Email": recipient_email, "Name": recipient_name}],
                     "Subject": subject,
                     "TextPart": message,
