@@ -74,7 +74,9 @@ MAX_BLOCKS = 25
 You may change the number if you want to simulate more blocks.
 
 ---
-
+## Fill your email in mailjet.py
+ node: please make the account in mail jet and than configuration with the python and cod
+ 
 ## 🌐 IP Configuration for P2P Nodes
 
 To connect this node with other nodes (Node 1 ↔ Node 2), you must manually edit the file:
