@@ -15,8 +15,8 @@ This is the **v0.10 alpha** version of a decentralized E-Voting system powered b
 
 ### 1. Clone or Download
 ```bash
-git clone https://github.com/<your-username>/e-voting-zytherion.git
-cd e-voting-zytherion
+https://github.com/zhao-leihan/E-voting-with-Zytherion-v0.11s
+E-voting-with-Zytherion-v0.11
 ```
 
 ### 2. Install Dependencies
